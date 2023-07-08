@@ -29,9 +29,7 @@ body {
 
 h1 {
     position: relative;
-    animation: none;
+
 }
 
-h1:hover {
-    animation: moveRight 9s infinite;
-}
+
