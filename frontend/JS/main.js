@@ -1,6 +1,5 @@
-
 document.getElementById("header").innerHTML=`
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<nav class="navbar bg-dark navbar-dark navbar-expand-lg border-bottom border-bottom-dark" data-bs-theme="dark">
   <div class="container">
     <a class="navbar-brand" href="index.html">Home</a>
     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -13,9 +12,8 @@ document.getElementById("header").innerHTML=`
                 <a class="nav-link active" href="productos.html" aria-current="page">CRUD <span class="visually-hidden">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="carrito.html" aria-current="page">Venta productos <span class="visually-hidden">(current)</span></a>
+            <a class="nav-link" href="carrito.html">Venta productos</a> 
             </li>
-            
             <li class="nav-item">
                 <a class="nav-link" href="producto_update.html">Editar Producto</a> 
             </li>
@@ -23,10 +21,7 @@ document.getElementById("header").innerHTML=`
                 <a class="nav-link" href="producto_nuevo.html">Producto Nuevo</a> 
             </li>
         </ul>
-        <form class="d-flex my-2 my-lg-0">
-            <input class="form-control me-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
     </div>
   </div>
 </nav>

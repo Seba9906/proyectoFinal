@@ -14,7 +14,8 @@ createApp({
             cilindrada: "",
             imagen: "",
             mostrarDetalle: false,
-            detalleProducto: null
+            detalleProducto: null,
+            mostrarBoton: false
         }
     },
     methods: {
@@ -74,7 +75,14 @@ createApp({
                 this.detalleProducto = producto;
                 this.mostrarDetalle = true;
             }
+        },
+        ocultarDetalles(event){
+            if (!event.target.classList.contains('detalle-producto')){
+                this.mostrarDetalle = false;
+                this.mostrarBoton = false;
+            }
         }
+
     },
     created() {
         this.fetchData(this.url)
