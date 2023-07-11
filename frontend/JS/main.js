@@ -31,26 +31,22 @@ document.getElementById("header").innerHTML = `
 
 document.getElementById("footer").innerHTML = `
 <footer class="bg-dark text-white py-4">
-  <div class="container d-flex justify-content-center align-items-center flex-column">
-    <h5 class="mb-3">Contáctenos</h5>
-    <p class="mb-3">+54 123 456 7890</p>
-    <p class="mb-3">info@pirerayen.com</p>
-    <p>Almirante Chanetton 254, Zapala, Neuquén</p>
+<div class="container d-flex justify-content-center align-items-center flex-column">
+  <h5 class="mb-3">Contáctenos</h5>
+  <p class="mb-3">+54 123 456 7890</p>
+  <p class="mb-3">info@pirerayen.com</p>
+  <p>Almirante Chanetton 254, Zapala, Neuquén</p>
 
-    <div class="d-flex justify-content-center mt-4">
-      <a href="#" class="text-white me-3">
-        <i class="fas fa-envelope fa-fw fa-2x"></i>
-      </a>
-      <a href="#" class="text-white me-3">
-        <i class="fab fa-instagram fa-fw fa-2x"></i>
-      </a>
-      <a href="#" class="text-white me-3">
-        <i class="fab fa-facebook fa-fw fa-2x"></i>
-      </a>
-      <a href="https://github.com/Seba9906/proyectoFinal" class="text-white me-3">
-        <i class="fab fa-github fa-fw fa-2x"></i>
-      </a>
-    </div>
+  <div class="d-flex justify-content-center mt-4">
+    <a href="mailto:troncoso.seb.99@gmail.com" class="text-white me-3">
+      <i class="fas fa-envelope fa-fw fa-2x"></i>
+    </a>
+    <a href="https://github.com/Seba9906/proyectoFinal" class="text-white me-3">
+      <i class="fab fa-github fa-fw fa-2x"></i>
+    </a>
   </div>
+
+  <p class="mt-4"> © Codo a Codo-23021 - Todos los derechos reservados</p> 
+</div>
 </footer>
 `;
