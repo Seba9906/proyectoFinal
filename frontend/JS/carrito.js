@@ -1,55 +1,79 @@
-const { createApp } = Vue  //creo un objeto VUE llamdo createApp
- createApp({
-   data() {  // define los datos de VUE
-     return {
-       url: 'https://seba9906.pythonanywhere.com/productos',
-       productos: [],
-       cantidad:0
-     }
-   },
-   methods: {  // define los métodos o funciones
-     fetchData(url) { 
-      console.log(12+"-"+this.url)
-       fetch(url)
-         .then(response => response.json())
-         .then(data => {
-           console.log(data)
-//           this.productos=data
-           this.productos=data.map( x => {x.cantidad=""; return x})  // agrego un campo cantidad a la lista producto
+const app = Vue.createApp({
+  data() {
+    return {
+      url: 'https://seba9906.pythonanywhere.com/productos',
+      productos: [],
+      carrito: [],
+      nombre: "",
+      precio: 0,
+      stock: 0,
+      cantidad: 0
+    };
+  },
+  methods: {
+    fetchData() {
+      fetch(this.url)
+        .then(response => response.json())
+        .then(data => {
+          this.productos = data.map(item => {
+            item.cantidad = 0;
+            item.subtotal = 0;
+            return item;
+          });
         })
-         .catch(error=>alert("Ups... se produjo un error: "+ error))
-     },
-     comprar(item){
-      let producto = {
-        nombre:item.nombre,
-        precio: item.precio,
-        stock: item.stock-item.cantidad ,
-        imagen: item.imagen
-      }
-    var options = {
-        body: JSON.stringify(producto),
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        redirect: 'follow'
-    }
-    //url=this.url+'/'+item.id
-    console.log(39+"-"+this.url)
-    fetch(this.url+'/'+item.id, options)
-        .then(function () {
-            alert("Registro modificado")
-            location.reload(); // recarga el json luego de comprar producto
-        })
-        .catch(err => {
-            console.error(err);
-            alert("Error al Modificar")
-        })  
-
-
+        .catch(error => console.error(error));
+    },
+    
+    agregarAlCarrito(producto) {
+      if (producto.cantidad > 0) {
+        const cantidad = Math.min(producto.cantidad, producto.stock); // Asegurarse de no agotar el stock
+        const subtotal = producto.precio * cantidad;
+    
+        const itemCarrito = {
+          nombre: producto.nombre,
+          cantidad: cantidad,
+          subtotal: subtotal.toFixed(2),
+        };
+    
+        const index = this.carrito.findIndex(item => item.nombre === producto.nombre);
+    
+        if (index !== -1) {
+          itemCarrito.cantidad += this.carrito[index].cantidad;
+          itemCarrito.subtotal = (subtotal + parseFloat(this.carrito[index].subtotal)).toFixed(2);
+          this.carrito.splice(index, 1, itemCarrito);
+        } else {
+          this.carrito.push(itemCarrito);
+        }
+    
+        producto.stock -= cantidad;
+        producto.cantidad = 0;
       }
     },
-   
-   created() {  // llama a los métodos que se tienen que ejecutar al inicio
-     this.fetchData(this.url)                                                      
-   }
- 
- }).mount('#app')
+    
+    
+    removerDelCarrito(item) {
+      const index = this.carrito.indexOf(item);
+      if (index !== -1) {
+        // Encuentra el producto correspondiente en la lista de productos
+        const producto = this.productos.find(p => p.nombre === item.nombre);
+        // Incrementa el stock del producto por la cantidad en el carrito
+        if (producto) producto.stock += item.cantidad;
+        // Quita el producto del carrito
+        this.carrito.splice(index, 1);
+      }
+    },
+    
+    calcularTotal() {
+      let total = 0;
+      for (const item of this.carrito) {
+        total += parseFloat(item.subtotal);
+      }
+      return total.toFixed(2);
+    },
+  },
+  created() {
+    this.fetchData();
+  },
+});
+
+app.mount('#app');
