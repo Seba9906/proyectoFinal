@@ -1,37 +1,9 @@
-// Vue App
-const app = Vue.createApp({
-  data() {
-    return {
-      email: '',
-      password: '',
-      isLoggedIn: false
-    };
-  },
-  methods: {
-    login() {
-      // Lógica de inicio de sesión
-      // Aquí puedes agregar tu código para autenticar al usuario
-      // y establecer el valor de "isLoggedIn" en "true" si el inicio de sesión es exitoso
-      this.isLoggedIn = true;
-      // Cerrar el modal de inicio de sesión
-      const modal = new bootstrap.Modal(document.getElementById('loginModal'));
-      modal.hide();
-    },
-    logout() {
-      // Lógica de cierre de sesión
-      // Aquí puedes agregar tu código para cerrar la sesión del usuario
-      // y establecer el valor de "isLoggedIn" en "false"
-      this.isLoggedIn = false;
-    }
-  }
-});
 
-app.mount('#app');
 
 document.getElementById("header").innerHTML = `
 <nav class="navbar bg-dark navbar-dark navbar-expand-lg border-bottom border-bottom-dark" data-bs-theme="dark">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Inicio</a>
+    <a class="navbar-brand" href="/index.html">Inicio</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
       aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
