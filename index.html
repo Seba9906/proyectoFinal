@@ -90,7 +90,7 @@
               <p class="card-text">Precio: {{ producto.precio }}</p>
               <p class="card-text">Stock: {{ producto.stock }}</p>
               <p class="card-text">Añadir al carrito</p>
-              <a href="#" class="btn btn-primary" v-on:click="verDetalles(producto)">
+              <a href="#" class="btn btn-primary" v-on:click.prevent="verDetalles(producto)">
                 {{ mostrarDetalle && producto === detalleProducto ? 'Ocultar detalle' : 'Ver detalles' }}
               </a>
 
